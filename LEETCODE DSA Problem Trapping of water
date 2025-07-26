@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n = height.size();
+        int lp = 0;
+        int  rp = n - 1;
+        int left_max = 0, right_max = 0;
+        int currsum = 0;
+
+        while (lp < rp) {
+            if (height[lp] < height[rp]) {
+                if (height[lp] >= left_max)
+                    left_max = height[lp];
+                else
+                    currsum += (left_max - height[lp]);
+                lp++;
+            } else {
+                if (height[rp] >= right_max)
+                    right_max = height[rp];
+                else
+                    currsum += (right_max - height[rp]);
+                rp--;
+            }
+        }
+        return currsum;
+    }
+};
